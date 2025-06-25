@@ -15,77 +15,77 @@
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Sort3 variant 1\n; Steps: if_a_gt_c_swap_ac, if_a_gt_b_swap_ab, if_b_gt_c_swap_bc, if_b_gt_c_swap_bc, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  ret void\n}",
     "task": "sort3_trace",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Sort3 variant 2\n; Steps: if_a_gt_b_swap_ab, if_b_gt_c_swap_bc, if_a_gt_b_swap_ab, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  ret void\n}",
     "task": "sort3_trace",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Sort3 variant 3\n; Steps: if_b_gt_c_swap_bc, if_a_gt_c_swap_ac, if_a_gt_c_swap_ac, if_a_gt_b_swap_ab, if_a_gt_c_swap_ac, if_a_gt_c_swap_ac, if_a_gt_b_swap_ab, if_a_gt_c_swap_ac",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  ret void\n}",
     "task": "sort3_trace",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Sort3 variant 4\n; Steps: if_b_gt_c_swap_bc, if_b_gt_c_swap_bc, if_a_gt_b_swap_ab, if_a_gt_c_swap_ac, if_b_gt_c_swap_bc, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  ret void\n}",
     "task": "sort3_trace",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Sort3 variant 5\n; Steps: if_a_gt_b_swap_ab, if_b_gt_c_swap_bc, if_b_gt_c_swap_bc, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  ret void\n}",
     "task": "sort3_trace",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Latency Optimization 1\n; Steps: if_b_gt_c_swap_bc, if_a_gt_c_swap_ac, if_a_gt_b_swap_ab, if_a_gt_b_swap_ab, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  ret void\n}",
     "task": "latency_optimization",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Latency Optimization 2\n; Steps: if_b_gt_c_swap_bc, if_a_gt_b_swap_ab, if_a_gt_b_swap_ab, if_b_gt_c_swap_bc, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  ret void\n}",
     "task": "latency_optimization",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Latency Optimization 3\n; Steps: if_b_gt_c_swap_bc, if_a_gt_b_swap_ab, load_prefetch, if_b_gt_c_swap_bc, if_a_gt_b_swap_ab, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  ret void\n}",
     "task": "latency_optimization",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Latency Optimization 4\n; Steps: if_a_gt_c_swap_ac, if_a_gt_b_swap_ab, load_prefetch, if_b_gt_c_swap_bc, if_a_gt_c_swap_ac, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  ret void\n}",
     "task": "latency_optimization",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Latency Optimization 5\n; Steps: if_a_gt_c_swap_ac, load_prefetch, if_b_gt_c_swap_bc, if_a_gt_b_swap_ab, if_a_gt_c_swap_ac, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  ret void\n}",
     "task": "latency_optimization",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Latency Optimization 6\n; Steps: if_a_gt_b_swap_ab, if_a_gt_c_swap_ac, if_b_gt_c_swap_bc, if_b_gt_c_swap_bc, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  ret void\n}",
     "task": "latency_optimization",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Latency Optimization 7\n; Steps: if_a_gt_b_swap_ab, if_b_gt_c_swap_bc, if_a_gt_c_swap_ac, if_a_gt_b_swap_ab, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  ret void\n}",
     "task": "latency_optimization",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Latency Optimization 8\n; Steps: if_a_gt_c_swap_ac, if_a_gt_b_swap_ab, if_b_gt_c_swap_bc, if_a_gt_c_swap_ac, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  ret void\n}",
     "task": "latency_optimization",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Latency Optimization 9\n; Steps: if_a_gt_c_swap_ac, if_a_gt_b_swap_ab, if_b_gt_c_swap_bc, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  ret void\n}",
     "task": "latency_optimization",
     "architecture": "llvm_ir"
   },
   {
-    "code": "; Trace-based pseudocode for Latency Optimization 10\n; Steps: if_a_gt_b_swap_ab, if_a_gt_c_swap_ac, if_b_gt_c_swap_bc, if_a_gt_b_swap_ab, done",
+    "code": "define void @sort3(i32 %a, i32 %b, i32 %c) {\nentry:\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  %cmp_ac = icmp sgt i32 %a, %c\n  %tmp_ac = select i1 %cmp_ac, i32 %c, i32 %a\n  %a_new = select i1 %cmp_ac, i32 %c, i32 %a\n  %c_new = select i1 %cmp_ac, i32 %a, i32 %c\n  %a = %a_new\n  %c = %c_new\n  %cmp_bc = icmp sgt i32 %b, %c\n  %tmp_bc = select i1 %cmp_bc, i32 %c, i32 %b\n  %b_new = select i1 %cmp_bc, i32 %c, i32 %b\n  %c_new = select i1 %cmp_bc, i32 %b, i32 %c\n  %b = %b_new\n  %c = %c_new\n  %cmp_ab = icmp sgt i32 %a, %b\n  %tmp_ab = select i1 %cmp_ab, i32 %b, i32 %a\n  %a_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %b_new = select i1 %cmp_ab, i32 %a, i32 %b\n  %a = %a_new\n  %b = %b_new\n  ret void\n}",
     "task": "latency_optimization",
     "architecture": "llvm_ir"
   }
